@@ -34,7 +34,7 @@ This project was built with a Cloud-Native, serverless-first approach to ensure 
 
 ##  How It Works
 
-1. The user inputs a target domain in the frontend.
+1. The user inputs a target domain (or a full raw URL) in the frontend. The client automatically sanitizes the input.
 2. A `POST` request is sent to the Cloudflare Worker (`/api/scan`).
 3. The Worker uses `Promise.allSettled()` to concurrently fetch HTTP headers, DNS records, IP geolocation, and cached Qualys SSL data.
 4. An internal scoring algorithm deducts points for missing security measures and assigns a final grade (A+ to F).
