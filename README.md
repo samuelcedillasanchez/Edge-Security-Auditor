@@ -6,7 +6,7 @@
 
 > **Live Demo:** [samuelcedillasanchez.com/asir](https://samuelcedillasanchez.com/asir)
 
-**Edge Security Auditor** is a serverless web application developed as a Final Degree Project (TFC) for the ASIR (*Administración de Sistemas Informáticos y Redes*) program. 
+**Edge Security Auditor** is a serverless web application developed as a Final Degree Project (TFC) for the ASIR program. 
 
 Built entirely on **Cloudflare Pages & Workers**, it performs real-time, non-intrusive Layer 4–7 security audits without relying on a traditional monolithic backend. The tool evaluates critical infrastructure configurations and compiles the data into a dynamic, downloadable PDF report.
 
