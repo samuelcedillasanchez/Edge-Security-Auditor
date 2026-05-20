@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ASIR Security Auditor — Samuel Cedilla</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Geist+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="noise"></div>
+  <div class="grid-bg"></div>
+  <header class="topbar-wrap">
+    <div class="container">
+      <div class="topbar">
+        <a href="/" class="topbar-logo">SCS</a>
+        <div class="topbar-links">
+          <a href="/#about">About</a>
+          <a href="/#projects">Projects</a>
+          <a href="/#contact">Contact</a>
+        </div>
+        <span class="topbar-badge">TFC ASIR</span>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-eyebrow">
+          <span class="dot"></span>
+          <span>Final Degree Project · ASIR</span>
+        </div>
+        <h1 class="hero-title">
+          <span class="line">Edge Security</span>
+          <span class="line accent-line">Auditor.</span>
+        </h1>
+        <p class="hero-sub">Layer 4–7 infrastructure analysis in Cloud-Native environments</p>
+        <div class="hero-cta">
+          <a class="btn-primary" href="#scanner">
+            <i class="fa-solid fa-shield-halved"></i> Launch Audit
+          </a>
+          <a class="btn-ghost" href="/">
+            <i class="fa-solid fa-arrow-left"></i> Return to Portfolio
+          </a>
+        </div>
+        <div class="stat-row reveal-block" data-delay="300">
+          <div class="stat-pill">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>Layer 4–7</span>
+          </div>
+          <div class="stat-pill">
+            <i class="fa-solid fa-file-pdf"></i>
+            <span>PDF Report</span>
+          </div>
+          <div class="stat-pill">
+            <i class="fa-solid fa-server"></i>
+            <span>Cloudflare Workers</span>
+          </div>
+          <div class="stat-pill">
+            <i class="fa-solid fa-clock"></i>
+            <span>Real-time Scan</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="about">
+      <div class="container">
+        <div class="reveal-block">
+          <div class="section-label">01 — About the Project</div>
+          <div class="two-col">
+            <div class="col-text">
+              <h2 class="section-heading">Security audits<br><em>without installing anything.</em></h2>
+              <p>
+                A web-based utility that inspects the security configuration of any public domain
+                by analyzing HTTP response headers, cryptographic SSL/TLS parameters, and core DNS records,
+                directly from your browser.
+              </p>
+              <p>
+                The execution layer runs completely serverless on Cloudflare Pages Functions, leveraging
+                Cloudflare's DNS-over-HTTPS API to fetch SPF, DMARC, and MX records, alongside Qualys SSL Labs API 
+                for infrastructure certificate validations.
+              </p>
+            </div>
+            <div class="col-checks">
+              <div class="check-item reveal-block" style="--i:0">
+                <span class="check-icon"><i class="fa-solid fa-check"></i></span>
+                <div>
+                  <span class="check-title">HTTP Security Headers</span>
+                  <span class="check-desc">HSTS, CSP, X-Frame-Options, X-Content-Type, Referrer-Policy</span>
+                </div>
+              </div>
+              <div class="check-item reveal-block" style="--i:1">
+                <span class="check-icon"><i class="fa-solid fa-check"></i></span>
+                <div>
+                  <span class="check-title">DNS Infrastructure</span>
+                  <span class="check-desc">SPF, DMARC, and MX validation for anti-spoofing resilience</span>
+                </div>
+              </div>
+              <div class="check-item reveal-block" style="--i:2">
+                <span class="check-icon"><i class="fa-solid fa-check"></i></span>
+                <div>
+                  <span class="check-title">Verified SSL/TLS Labs</span>
+                  <span class="check-desc">Real-time grading via Qualys, evaluation of cipher suites and expiration</span>
+                </div>
+              </div>
+              <div class="check-item reveal-block" style="--i:3">
+                <span class="check-icon"><i class="fa-solid fa-check"></i></span>
+                <div>
+                  <span class="check-title">IP Geolocation & PDF Export</span>
+                  <span class="check-desc">Server ASN, country, and city mapping with downloadable summaries</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="scanner">
+      <div class="container">
+        <div class="reveal-block">
+          <div class="section-label">02 — Auditor Layer</div>
+          <h2 class="section-heading">Target Domain.</h2>
+        </div>
+        <div class="scanner-card reveal-block" data-delay="100">
+          <div class="scanner-input-row">
+            <div class="input-wrap">
+              <i class="fa-solid fa-globe input-icon"></i>
+              <input type="text" id="targetUrl" placeholder="example.com" autocomplete="off" spellcheck="false" />
+            </div>
+            <button id="btnScan" onclick="startScan()">
+              <span id="btnText">Audit Target</span>
+              <i class="fa-solid fa-arrow-right" id="btnIcon"></i>
+            </button>
+          </div>
+          <p class="scanner-hint">Provide raw domains without protocol prefixes · e.g., <em>google.com</em></p>
+        </div>
+        <div id="results" class="results-area hidden reveal-block" data-delay="50">
+          <div class="results-top">
+            <div class="grade-card">
+              <div class="grade-card-actions">
+                <button onclick="downloadPDF()" class="btn-pdf">
+                  <i class="fa-solid fa-file-arrow-down"></i> Download PDF
+                </button>
+              </div>
+              <div class="grade-label">Global Security Rating</div>
+              <div class="grade-value" id="res-grade">--</div>
+              <div class="grade-score">SCORE: <span id="res-score">0</span>/100</div>
+            </div>
+            <div class="ssl-card">
+              <div class="ssl-label">SSL/TLS Deployment</div>
+              <div class="ssl-value" id="res-ssl-v">--</div>
+              <div class="ssl-meta">
+                <span>Grade: <strong id="res-ssl-grade">--</strong></span>
+                <span>Expires: <strong id="res-ssl-expiry">--</strong></span>
+              </div>
+              <p class="ssl-desc" id="res-ssl-desc">Evaluating certificate state...</p>
+              <div class="ssl-icon"><i class="fa-solid fa-lock"></i></div>
+            </div>
+          </div>
+          <div class="details-grid">
+            <div class="detail-card">
+              <div class="detail-header">
+                <i class="fa-solid fa-globe"></i>
+                <span>Web Hardening — Layer 7</span>
+              </div>
+              <div class="detail-list" id="list-http"></div>
+            </div>
+            <div class="detail-card">
+              <div class="detail-header">
+                <i class="fa-solid fa-server"></i>
+                <span>DNS Architecture — Layer 4</span>
+              </div>
+              <div class="detail-list" id="list-dns"></div>
+            </div>
+          </div>
+          <div class="details-grid" id="row-extras" style="margin-top:16px;">
+            <div class="detail-card" id="card-ip">
+              <div class="detail-header">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Server — Geolocation Data</span>
+              </div>
+              <div class="detail-list" id="list-ip"></div>
+            </div>
+            <div class="detail-card">
+              <div class="detail-header">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Security Metadata & Extras</span>
+              </div>
+              <div class="detail-list" id="list-extras"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="stack">
+      <div class="container">
+        <div class="reveal-block">
+          <div class="section-label">03 — Technical Stack</div>
+          <h2 class="section-heading">Built with.</h2>
+        </div>
+        <div class="stack-grid">
+          <div class="stack-card reveal-block" data-delay="0">
+            <i class="fa-brands fa-cloudflare"></i>
+            <span class="stack-name">Cloudflare Pages</span>
+            <span class="stack-desc">Hosting + Serverless edge functions</span>
+          </div>
+          <div class="stack-card reveal-block" data-delay="80">
+            <i class="fa-brands fa-js"></i>
+            <span class="stack-name">Vanilla JS</span>
+            <span class="stack-desc">Zero frameworks, zero dependencies</span>
+          </div>
+          <div class="stack-card reveal-block" data-delay="160">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span class="stack-name">DNS-over-HTTPS</span>
+            <span class="stack-desc">Cloudflare proxy query infrastructure</span>
+          </div>
+          <div class="stack-card reveal-block" data-delay="200">
+            <i class="fa-solid fa-lock"></i>
+            <span class="stack-name">Qualys SSL Labs</span>
+            <span class="stack-desc">Corporate-grade TLS verification pipeline</span>
+          </div>
+          <div class="stack-card reveal-block" data-delay="240">
+            <i class="fa-solid fa-file-pdf"></i>
+            <span class="stack-name">jsPDF</span>
+            <span class="stack-desc">Dynamic client-side reporting agent</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <a href="/" class="footer-logo">SCS</a>
+        <span>© <span id="year"></span> Samuel Cedilla Sánchez</span>
+        <span class="footer-made">TFC ASIR</span>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
