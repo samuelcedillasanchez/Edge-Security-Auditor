@@ -39,6 +39,23 @@ document.getElementById("targetUrl").addEventListener("keydown", e => {
   if (e.key === "Enter") startScan();
 });
 
+function extractDomain(input) {
+  const raw = input.trim();
+  if (!raw) return "";
+  try {
+    if (/^[a-z][a-z0-9+\-.]*:\/\//i.test(raw)) {
+      return new URL(raw).hostname.replace(/^www\./, "");
+    }
+    return new URL("https://" + raw).hostname.replace(/^www\./, "");
+  } catch (e) {
+    return raw
+      .replace(/^(?:https?:\/\/)?(?:www\.)?/i, "")
+      .split("/")
+      .split("?")
+      .toLowerCase();
+  }
+}
+
 let currentData = null;
 
 async function startScan() {
@@ -64,7 +81,7 @@ async function startScan() {
     const res = await fetch("/api/scan", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ url: urlInput.value.trim() })
+      body: JSON.stringify({ url: extractDomain(urlInput.value) })
     });
     const data = await res.json();
     if (!res.ok) throw new Error(data.details || data.error || "Technical failure");
@@ -190,7 +207,6 @@ function pdfClean(str) {
     .trim() || "-";
 }
 
-// Actualizado para usar las palabras clave en inglés
 function pdfColor(cleanVal, accent, warn, bad, neutral) {
   if (cleanVal.includes("[OK]"))  return accent;
   if (cleanVal.includes("[X]") || cleanVal.toUpperCase().includes("VULNERABLE"))   return bad;
@@ -258,7 +274,6 @@ function downloadPDF() {
     y += 7;
   }
 
-  // Corregido el buscador de color para dar soporte al formateo dinámico en inglés
   function pdfRow(label, rawVal, colorize) {
     if (colorize === undefined) colorize = true;
     const clean = pdfClean(rawVal);
