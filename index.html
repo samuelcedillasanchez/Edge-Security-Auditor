@@ -131,14 +131,14 @@
           <div class="scanner-input-row">
             <div class="input-wrap">
               <i class="fa-solid fa-globe input-icon"></i>
-              <input type="text" id="targetUrl" placeholder="example.com" autocomplete="off" spellcheck="false" />
+              <input type="text" id="targetUrl" placeholder="google.com or https://www.google.com/path" autocomplete="off" spellcheck="false" />
             </div>
             <button id="btnScan" onclick="startScan()">
               <span id="btnText">Audit Target</span>
               <i class="fa-solid fa-arrow-right" id="btnIcon"></i>
             </button>
           </div>
-          <p class="scanner-hint">Provide raw domains without protocol prefixes · e.g., <em>google.com</em></p>
+          <p class="scanner-hint">Accepts any URL format · e.g., <em>google.com</em> · <em>https://www.google.com/search?q=algo</em></p>
         </div>
         <div id="results" class="results-area hidden reveal-block" data-delay="50">
           <div class="results-top">
