@@ -4,7 +4,7 @@
 [![Vanilla JS](https://img.shields.io/badge/Frontend-Vanilla%20JS-F7DF1E?logo=javascript&logoColor=black)](#)
 [![Academic Project](https://img.shields.io/badge/Project-TFC%20ASIR-blue)](#)
 
-> **Live Demo:** [samuelcedillasanchez.com/asir](https://[samuelcedillasanchez.com/asir])
+> **Live Demo:** [samuelcedillasanchez.com/asir](https://samuelcedillasanchez.com/asir)
 
 **Edge Security Auditor** is a serverless web application developed as a Final Degree Project (TFC) for the ASIR (*Administración de Sistemas Informáticos y Redes*) program. 
 
